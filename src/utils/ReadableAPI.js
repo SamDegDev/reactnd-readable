@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5001';
+const API_ROOT = 'http://localhost:5001';
 
 // Generate a unique token
 let token = localStorage.token
@@ -10,7 +10,8 @@ const headers = {
   'Authorization': token,
 };
 
-export const getAllCategories = () =>
-  fetch(`${api}/categories`, { headers })
+// Fetches all Categories from the server
+export const getCategories = () =>
+  fetch(`${API_ROOT}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
