@@ -1,0 +1,151 @@
+.App {
+  text-align: center;
+  font-size: 1em;
+}
+
+.App-nav {
+  background-color: #EFEFEF;
+  text-transform: uppercase;
+  padding: 0 5px;
+  border: 0 solid #787878;
+  border-width: 0 0 1px 0;
+}
+
+.App-nav .categories {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.App-nav .categories li {
+  display: flex;
+  justify-content: center;
+  padding: 3px 10px;
+}
+
+.App-nav .categories a {
+  text-decoration: none;
+  font-size: 11px;
+  color: #000;
+}
+
+.App-nav .categories a:hover {
+  text-decoration: underline;
+}
+
+.App-nav .categories a:active,
+.App-nav .categories a.active {
+  font-weight: bold;
+  color: orangered;
+}
+
+.App-header {
+  background-color: #CBE0F7;
+  height: 50px;
+  display: flex;
+  padding: 0 15px;
+  border: 0 solid #5991CB;
+  border-width: 0 0 1px 0;
+}
+
+.App-header .logo {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-header .sortmenu {
+  list-style: none;
+  display: flex;
+  align-self: flex-end;
+  margin: 0 0 -1px 20px;
+  padding: 0;
+}
+
+.App-header li {
+  display: inline;
+  padding: 3px 5px 0;
+}
+
+.App-header a {
+  background-color: #EFF7FF;
+  text-decoration: none;
+  padding: 2px 6px 0 6px;
+  color: #369;
+  font-size: 12px;
+  font-weight: bold;
+  border: 0 solid #5F99CF;
+  border-width: 0 0 1px 0;
+}
+
+.App-header a.active {
+  color: orangered;
+  border: 1px solid #5F99CF;
+  border-bottom: 1px solid #FFF;
+  background-color: #FFF;
+}
+
+.App-content {
+  margin: 5px;
+}
+
+.App-content .list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.App-content .list-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: center;
+  margin: 10px;
+}
+
+.App-content .votes {
+  color:#B2B2B2;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.App-content .votes a {
+  color:#C2C2C2;
+  text-decoration: none;
+}
+
+.App-content .post {
+  margin:0 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  text-align: left;
+}
+
+.App-content .post a {
+  text-decoration: none;
+}
+
+.App-content .post a:hover {
+  text-decoration: underline;
+}
+
+.App-content .post .details,
+.App-content .post .details a,
+.App-content .post .comments,
+.App-content .post .comments a {
+  color:#B2B2B2;
+  font-size: 12px;
+}
+
+.App-content .post .comments {
+  font-weight: bold;
+}
