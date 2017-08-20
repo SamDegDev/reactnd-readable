@@ -3,19 +3,13 @@ import '../css/App.css';
 import FaBook from 'react-icons/lib/fa/book';
 import TiArrowUp from 'react-icons/lib/ti/arrow-up';
 import TiArrowDown from 'react-icons/lib/ti/arrow-down';
+import Categories from './Categories';
 
 class App extends Component {
   render() {
     return (
       <div className='App'>
-        <div className='App-nav'>
-          <ul className='categories'>
-            <li><a href='#' className='active'>all categories</a></li>
-            <li><a href='#'>react</a></li>
-            <li><a href='#'>redux</a></li>
-            <li><a href='#'>udacity</a></li>
-          </ul>
-        </div>
+        <Categories />
         <div className='App-header'>
           <div className='logo'><FaBook/>&nbsp;Readable</div>
           <ul className='sortmenu'>
