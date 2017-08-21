@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { getCategories } from '../utils/ReadableAPI';
 
 class Categories extends Component {
@@ -20,9 +20,9 @@ class Categories extends Component {
     return (
       <div className='App-nav'>
         <ul className='categories'>
-          <li><Link to='/' exact activeClassName='active'>all categories</Link></li>
+          <li><NavLink to='/' exact activeClassName='active'>all categories</NavLink></li>
           {categories && categories.map(category =>
-            <li key={category.name}><Link to={`/r/${category.path}`} activeClassName='active'>{category.name}</Link></li>
+            <li key={category.name}><NavLink to={`/r/${category.path}`} activeClassName='active'>{category.name}</NavLink></li>
           )}
         </ul>
       </div>
