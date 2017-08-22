@@ -11,7 +11,7 @@ const headers = {
 };
 
 // Fetches all Categories from the server
-export const getCategories = () =>
+export const fetchCategories = () =>
   fetch(`${API_ROOT}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)

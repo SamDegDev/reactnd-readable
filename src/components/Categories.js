@@ -1,33 +1,41 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getCategories } from '../utils/ReadableAPI';
+import { connect } from 'react-redux';
+import { getCategories } from '../actions';
 
 class Categories extends Component {
-  state = {
-    categories: null,
-  };
 
   componentDidMount() {
-    getCategories()
-      .then(categories => this.setState(() => ({
-        categories,
-      })));
+    this.props.getCategories();
   }
 
   render() {
-    const { categories } = this.state;
-
+    console.log(this.props);
+    
     return (
       <div className='App-nav'>
         <ul className='categories'>
           <li><NavLink to='/' exact activeClassName='active'>all categories</NavLink></li>
-          {categories && categories.map(category =>
-            <li key={category.name}><NavLink to={`/r/${category.path}`} activeClassName='active'>{category.name}</NavLink></li>
-          )}
+          {//categories && categories.map(category =>
+          //  <li key={category.name}><NavLink to={`/r/${category.path}`} activeClassName='active'>{category.name}</NavLink></li>
+          //)
+          }
         </ul>
       </div>
     );
   }
 }
 
-export default Categories;
+function mapStateToProps(categories) {
+  return {
+    categories
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    getCategories: data => dispatch(getCategories()),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);
