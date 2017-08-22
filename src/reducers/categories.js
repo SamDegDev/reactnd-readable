@@ -1,13 +1,13 @@
-import { GET_CATEGORIES } from '../actions/index';
+import { RECEIVE_CATEGORIES } from '../actions/index';
 
-export default function categories(state = {}, action) {
+export default function categories(state = [], action) {
   switch (action.type) {
-    case GET_CATEGORIES:
+    case RECEIVE_CATEGORIES:
       const { categories } = action;
-      return {
+      return [
         ...state,
-        categories,
-      };
+        ...categories,
+      ];
     default:
       return state;
   }

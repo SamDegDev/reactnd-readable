@@ -1,10 +1,10 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
 
-export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 
-export const getCategories = categories => ({ type: GET_CATEGORIES, categories });
-export const fetchCategories = () => dispatch => (
+export const receiveCategories = categories => ({ type: RECEIVE_CATEGORIES, categories });
+export const fetchCategories = () => dispatch => {
     ReadableAPI
         .fetchCategories()
-        .then(categories => dispatch(getCategories(categories)))
-  );
+        .then(categories => dispatch(receiveCategories(categories)))
+};
