@@ -1,6 +1,7 @@
-import { RECEIVE_ALL_POSTS, RECEIVE_POSTS_WITH_CATEGORY } from '../actions/index';
+import { RECEIVE_ALL_POSTS, RECEIVE_POSTS_WITH_CATEGORY, CHANGE_POSTS_SORTING } from '../actions/index';
 
 const initialPostsState = {
+  sorting: 'top',
   list: []
 }
 
@@ -18,6 +19,11 @@ export default function posts(state = initialPostsState, action) {
         ...state,
         list: posts,
       };
+    case CHANGE_POSTS_SORTING:
+      return {
+        ...state,
+        sorting: action.sorting
+      }
     default:
       return state;
   }

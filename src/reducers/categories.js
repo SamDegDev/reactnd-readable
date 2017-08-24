@@ -1,7 +1,7 @@
 import { RECEIVE_ALL_CATEGORIES, CHANGE_SELECTED_CATEGORY } from '../actions/index';
 
 const initialCategoriesState = {
-  selected: '/',
+  selected: null,
   list: []
 }
 

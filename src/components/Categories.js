@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import { fetchAllCategories } from '../actions';
 
 class Categories extends Component {
@@ -16,7 +16,7 @@ class Categories extends Component {
     return (
       <div className='App-nav'>
         <ul className='categories'>
-          <li><NavLink to='/' exact activeClassName='active'>all categories</NavLink></li>
+          <li><NavLink to='/r/all' activeClassName='active'>all categories</NavLink></li>
           {categories.list && categories.list.map(category =>
             <li key={category.name}><NavLink to={`/r/${category.path}`} activeClassName='active'>{category.name}</NavLink></li>
           )}
