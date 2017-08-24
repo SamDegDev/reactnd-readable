@@ -1,13 +1,13 @@
-import { GET_POSTS } from '../actions/index';
+import { RECEIVE_ALL_POSTS } from '../actions/index';
 
-export default function posts(state = {}, action) {
+export default function posts(state = [], action) {
   switch (action.type) {
-    case GET_POSTS:
+    case RECEIVE_ALL_POSTS:
       const { posts } = action;
-      return {
+      return [
         ...state,
-        posts,
-      };
+        ...posts,
+      ];
     default:
       return state;
   }
