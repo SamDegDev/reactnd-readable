@@ -10,14 +10,21 @@ const headers = {
   'Authorization': token,
 };
 
-// Fetches all Categories from the server
+// Fetches all categories available
 export const fetchAllCategories = () =>
   fetch(`${API_ROOT}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
 
-// Fetches all Posts from the server
+// Fetches all of the posts
 export const fetchAllPosts = () =>
 fetch(`${API_ROOT}/posts`, { headers })
   .then(res => res.json())
   .then(data => data);
+
+// Fetches all of the posts for a particular category
+export const fetchPostsWithCategory = category => {
+return fetch(`${API_ROOT}/${category}/posts`, { headers })
+  .then(res => res.json())
+  .then(data => data);
+}

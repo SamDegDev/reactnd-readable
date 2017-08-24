@@ -1,13 +1,24 @@
-import { RECEIVE_ALL_CATEGORIES } from '../actions/index';
+import { RECEIVE_ALL_CATEGORIES, CHANGE_SELECTED_CATEGORY } from '../actions/index';
 
-export default function categories(state = [], action) {
+const initialCategoriesState = {
+  selected: '/',
+  list: []
+}
+
+export default function categories(state = initialCategoriesState, action) {
   switch (action.type) {
     case RECEIVE_ALL_CATEGORIES:
       const { categories } = action;
-      return [
+      return {
         ...state,
-        ...categories,
-      ];
+        list: [...categories],
+        };
+    case CHANGE_SELECTED_CATEGORY:
+        const { category } = action;
+        return {
+          ...state,
+          selected: category,
+        }
     default:
       return state;
   }

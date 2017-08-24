@@ -1,13 +1,23 @@
-import { RECEIVE_ALL_POSTS } from '../actions/index';
+import { RECEIVE_ALL_POSTS, RECEIVE_POSTS_WITH_CATEGORY } from '../actions/index';
 
-export default function posts(state = [], action) {
+const initialPostsState = {
+  list: []
+}
+
+export default function posts(state = initialPostsState, action) {
+  const { posts } = action;
+
   switch (action.type) {
     case RECEIVE_ALL_POSTS:
-      const { posts } = action;
-      return [
+      return {
         ...state,
-        ...posts,
-      ];
+        list: posts,
+      };
+    case RECEIVE_POSTS_WITH_CATEGORY:
+      return {
+        ...state,
+        list: posts,
+      };
     default:
       return state;
   }

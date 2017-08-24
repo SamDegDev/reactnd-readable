@@ -17,7 +17,7 @@ class Categories extends Component {
       <div className='App-nav'>
         <ul className='categories'>
           <li><NavLink to='/' exact activeClassName='active'>all categories</NavLink></li>
-          {categories && categories.map(category =>
+          {categories.list && categories.list.map(category =>
             <li key={category.name}><NavLink to={`/r/${category.path}`} activeClassName='active'>{category.name}</NavLink></li>
           )}
         </ul>
@@ -26,9 +26,9 @@ class Categories extends Component {
   }
 }
 
-function mapStateToProps(categories) {
+function mapStateToProps({ categories }) {
   return {
-    ...categories
+    categories
   }
 }
 

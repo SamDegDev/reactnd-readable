@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
-import { fetchAllPosts } from '../actions';
+import { Link, withRouter } from 'react-router-dom'
+import { fetchAllPosts, fetchPostsWithCategory, changeSelectedCategory } from '../actions';
 import TiArrowUp from 'react-icons/lib/ti/arrow-up';
 import TiArrowDown from 'react-icons/lib/ti/arrow-down';
+import TimeAgo from 'react-timeago';
 
 class PostsList extends Component {
 
   componentDidMount() {
-    this.props.fetchAllPosts();
+    this.loadPosts(this.props.location);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location !== this.props.location) {
+      this.loadPosts(nextProps.location);
+    }
+  }
+
+  loadPosts(location) {
+    const selectedCategory = location.pathname.split('/r/').pop();
+    if (selectedCategory !== this.props.categories.selected) {
+      selectedCategory === '/' ? this.props.fetchAllPosts() : this.props.fetchPostsWithCategory(selectedCategory);
+    }
+    this.props.changeSelectedCategory(selectedCategory);
   }
 
   render() {
@@ -17,7 +32,7 @@ class PostsList extends Component {
     return (
       <div className='App-content'>
         <ul className='list'>
-          {posts && posts.map(post =>
+          {posts.list && posts.list.map(post =>
             <li className='list-item' key={post.id}>
               <div className='votes'>
                 <a className='arrow up' href='#up'><TiArrowUp size={24}/></a>
@@ -26,7 +41,7 @@ class PostsList extends Component {
               </div>
               <div className='post'>
                 <div className='title'><a href='#title'>{post.title}</a></div>
-                <div className='details'>submitted $TIME by {post.author} to <a href='#category'>{post.category}</a></div>
+                <div className='details'>submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/r/${post.category}`}>/r/{post.category}</Link></div>
                 <div className='comments'><a href='#comments'>$TOTAL_COMMENTS</a> comments</div>
               </div>
             </li>
@@ -37,15 +52,18 @@ class PostsList extends Component {
   }
 }
 
-function mapStateToProps(posts) {
+function mapStateToProps({ posts, categories }) {
   return {
-    ...posts
+    posts,
+    categories,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     fetchAllPosts: data => dispatch(fetchAllPosts()),
+    fetchPostsWithCategory: data => dispatch(fetchPostsWithCategory(data)),
+    changeSelectedCategory: data => dispatch(changeSelectedCategory(data)),
   }
 };
 
