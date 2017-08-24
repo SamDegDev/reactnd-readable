@@ -11,13 +11,13 @@ const headers = {
 };
 
 // Fetches all Categories from the server
-export const fetchCategories = () =>
+export const fetchAllCategories = () =>
   fetch(`${API_ROOT}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
 
 // Fetches all Posts from the server
-export const fetchPosts = () =>
+export const fetchAllPosts = () =>
 fetch(`${API_ROOT}/posts`, { headers })
   .then(res => res.json())
   .then(data => data);
