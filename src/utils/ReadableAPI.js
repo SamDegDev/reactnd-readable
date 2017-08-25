@@ -18,13 +18,18 @@ export const fetchAllCategories = () =>
 
 // Fetches all of the posts
 export const fetchAllPosts = () =>
-fetch(`${API_ROOT}/posts`, { headers })
-  .then(res => res.json())
-  .then(data => data);
+  fetch(`${API_ROOT}/posts`, { headers })
+    .then(res => res.json())
+    .then(data => data);
 
 // Fetches all of the posts for a particular category
-export const fetchPostsWithCategory = category => {
-return fetch(`${API_ROOT}/${category}/posts`, { headers })
-  .then(res => res.json())
-  .then(data => data);
-}
+export const fetchPostsWithCategory = category =>
+  fetch(`${API_ROOT}/${category}/posts`, { headers })
+    .then(res => res.json())
+    .then(data => data);
+
+// Fetches a post by its id
+export const fetchPostById = id => 
+  fetch(`${API_ROOT}/posts/${id}`, { headers })
+    .then(res => res.json())
+    .then(data => data);

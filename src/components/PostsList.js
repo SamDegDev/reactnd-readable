@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { fetchAllPosts, fetchPostsWithCategory, changeSelectedCategory, changePostsSorting } from '../actions';
+import { urlize } from '../utils/helpers';
 import TiArrowUp from 'react-icons/lib/ti/arrow-up';
 import TiArrowDown from 'react-icons/lib/ti/arrow-down';
 import TimeAgo from 'react-timeago';
@@ -48,7 +49,7 @@ class PostsList extends Component {
                 <a className='arrow down' href='#down'><TiArrowDown size={24} /></a>
               </div>
               <div className='post'>
-                <div className='title'><a href='#title'>{post.title}</a></div>
+                <div className='title'><Link to={`/r/${post.category}/comments/${post.id}/${urlize(post.title)}`}>{post.title}</Link></div>
                 <div className='details'>submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/r/${post.category}`}>/r/{post.category}</Link></div>
                 <div className='comments'><a href='#comments'>$TOTAL_COMMENTS</a> comments</div>
               </div>
@@ -69,7 +70,6 @@ function getSortingFromUrl(url) {
   const match = url.match(/\/r\/[^\W]+\/([^\W]+)/i);
   return !match ? 'top' : match[1];
 }
-
 
 function mapStateToProps({ posts, categories }) {
   switch (posts.sorting) {

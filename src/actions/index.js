@@ -5,6 +5,7 @@ export const CHANGE_SELECTED_CATEGORY = 'CHANGE_SELECTED_CATEGORY';
 export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS';
 export const RECEIVE_POSTS_WITH_CATEGORY = 'RECEIVE_POSTS_WITH_CATEGORY';
 export const CHANGE_POSTS_SORTING = 'CHANGE_POSTS_SORTING';
+export const RECEIVE_POST_BY_ID = 'RECEIVE_POST_BY_ID';
 
 export const receiveAllCategories = categories => ({ type: RECEIVE_ALL_CATEGORIES, categories });
 export const fetchAllCategories = () => dispatch => {
@@ -30,3 +31,10 @@ export const fetchPostsWithCategory = category => dispatch => {
 }
 
 export const changePostsSorting = sorting => ({ type: CHANGE_POSTS_SORTING, sorting })
+
+export const receivePostById = post => ({ type: RECEIVE_POST_BY_ID, post });
+export const fetchPostById = id => dispatch => {
+    ReadableAPI
+        .fetchPostById(id)
+        .then(post => dispatch(receivePostById(post)));
+}
