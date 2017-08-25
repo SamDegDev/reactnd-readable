@@ -9,14 +9,15 @@ import '../css/App.css';
 
 class App extends Component {
   render() {
+    const { sorting } = this.props.posts;
     return (
       <div className='App'>
         <Categories />
         <div className='App-header'>
           <div className='logo'><FaBook/>&nbsp;Readable</div>
           <ul className='sortmenu'>
-            <li><NavLink to={`/r/${this.props.categories.selected}/top`} activeClassName='active'>top</NavLink></li>
-            <li><NavLink to={`/r/${this.props.categories.selected}/new`} activeClassName='active'>new</NavLink></li>
+            <li><NavLink to={`/r/${this.props.categories.selected}/top`} activeClassName='active' className={sorting === 'top' ? 'active' : ''}>top</NavLink></li>
+            <li><NavLink to={`/r/${this.props.categories.selected}/new`} activeClassName='active' className={sorting === 'new' ? 'active' : ''}>new</NavLink></li>
           </ul>
         </div>
         <PostsList />
