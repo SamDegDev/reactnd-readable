@@ -23,13 +23,25 @@ export const fetchAllPosts = () =>
     .then(data => data);
 
 // Fetches all of the posts for a particular category
-export const fetchPostsWithCategory = category =>
-  fetch(`${API_ROOT}/${category}/posts`, { headers })
+export const fetchPostsWithCategory = categoryId =>
+  fetch(`${API_ROOT}/${categoryId}/posts`, { headers })
     .then(res => res.json())
     .then(data => data);
 
 // Fetches a post by its id
-export const fetchPostById = id => 
-  fetch(`${API_ROOT}/posts/${id}`, { headers })
+export const fetchPostById = postId =>
+  fetch(`${API_ROOT}/posts/${postId}`, { headers })
     .then(res => res.json())
     .then(data => data);
+
+// Fetches all the comments for a single post
+export const fetchCommentsWithPost = postId =>
+fetch(`${API_ROOT}/posts/${postId}/comments`, { headers })
+  .then(res => res.json())
+  .then(data => data);
+
+// Fetches the details for a single comment
+export const fetchCommentById = commentId =>
+fetch(`${API_ROOT}/comments/${commentId}`, { headers })
+  .then(res => res.json())
+  .then(data => data);
