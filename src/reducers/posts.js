@@ -21,8 +21,8 @@ export default function posts(state = initialPostsState, action) {
         list: posts,
       }
     case CHANGE_POSTS_SORTING:
-      const sorting  = 
-        ['new', 'top'].includes(action.sorting) 
+      const sorting  =
+        ['new', 'top'].includes(action.sorting)
           ? action.sorting
           : null;
       return {
