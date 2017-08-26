@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { fetchAllPosts, fetchPostsWithCategory, changeSelectedCategory, changePostsSorting } from '../actions';
-import { urlize } from '../utils/helpers';
-import TiArrowUp from 'react-icons/lib/ti/arrow-up';
-import TiArrowDown from 'react-icons/lib/ti/arrow-down';
-import TimeAgo from 'react-timeago';
+import PostItem from './PostItem';
 
 class PostsList extends Component {
 
@@ -31,15 +28,13 @@ class PostsList extends Component {
 
   sortPosts(location) {
     const selectedSorting = getSortingFromUrl(location.pathname);
-    //if (selectedSorting !== this.props.posts.sorting) {
-    //}
     this.props.changePostsSorting(selectedSorting);
   }
 
   render() {
     const { posts } = this.props;
     return (
-      <div className='App-content'>
+      <div className='posts-list'>
         <ul className='sortmenu'>
           <li><Link to={`/r/${this.props.categories.selected}/top`} className={posts.sorting === 'top' ? 'active' : ''}>top</Link></li>
           <li><Link to={`/r/${this.props.categories.selected}/new`} className={posts.sorting === 'new' ? 'active' : ''}>new</Link></li>
@@ -47,16 +42,7 @@ class PostsList extends Component {
         <ul className='list'>
           {posts.list && posts.list.map(post =>
             <li className='list-item' key={post.id}>
-              <div className='votes'>
-                <a className='arrow up' href='#up'><TiArrowUp size={24}/></a>
-                <div className='score'>{post.voteScore}</div>
-                <a className='arrow down' href='#down'><TiArrowDown size={24} /></a>
-              </div>
-              <div className='post'>
-                <div className='title'><Link to={`/r/${post.category}/comments/${post.id}/${urlize(post.title)}`}>{post.title}</Link></div>
-                <div className='details'>submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/r/${post.category}`}>/r/{post.category}</Link></div>
-                <div className='comments'><a href='#comments'>$TOTAL_COMMENTS</a> comments</div>
-              </div>
+              <PostItem post={post} />
             </li>
           )}
         </ul>
