@@ -65,7 +65,7 @@
   list-style: none;
   display: flex;
   align-self: flex-end;
-  margin: -26px 0 15px 130px;
+  margin: -26px 0 0 130px;
   padding: 0;
 }
 
@@ -110,18 +110,28 @@
   margin: 10px;
 }
 
-.App-content .votes {
+.App-content .post-details {
+  margin: 10px;
+}
+
+.post-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: initial;
+}
+
+.post-item .votes {
   color:#B2B2B2;
   font-size: 13px;
   font-weight: bold;
 }
 
-.App-content .votes a {
+.post-item .votes a {
   color:#C2C2C2;
   text-decoration: none;
 }
 
-.App-content .post {
+.post-item .post {
   margin:0 0 0 10px;
   display: flex;
   flex-direction: column;
@@ -130,22 +140,22 @@
   text-align: left;
 }
 
-.App-content .post a {
+.post-item .post a {
   text-decoration: none;
 }
 
-.App-content .post a:hover {
+.post-item .post a:hover {
   text-decoration: underline;
 }
 
-.App-content .post .details,
-.App-content .post .details a,
-.App-content .post .comments,
-.App-content .post .comments a {
+.post-item .post .details,
+.post-item .post .details a,
+.post-item .post .comments,
+.post-item .post .comments a {
   color:#B2B2B2;
   font-size: 12px;
 }
 
-.App-content .post .comments {
+.post-item .post .comments {
   font-weight: bold;
 }
