@@ -40,6 +40,10 @@ class PostsList extends Component {
     const { posts } = this.props;
     return (
       <div className='App-content'>
+        <ul className='sortmenu'>
+          <li><Link to={`/r/${this.props.categories.selected}/top`} className={posts.sorting === 'top' ? 'active' : ''}>top</Link></li>
+          <li><Link to={`/r/${this.props.categories.selected}/new`} className={posts.sorting === 'new' ? 'active' : ''}>new</Link></li>
+        </ul>
         <ul className='list'>
           {posts.list && posts.list.map(post =>
             <li className='list-item' key={post.id}>

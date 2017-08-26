@@ -57,20 +57,24 @@
   justify-content: center;
 }
 
-.App-header .sortmenu {
+.App-content {
+  margin: 5px;
+}
+
+.App-content .sortmenu {
   list-style: none;
   display: flex;
   align-self: flex-end;
-  margin: 0 0 -1px 20px;
+  margin: -26px 0 15px 130px;
   padding: 0;
 }
 
-.App-header li {
+.App-content .sortmenu li {
   display: inline;
   padding: 3px 5px 0;
 }
 
-.App-header a {
+.App-content .sortmenu a {
   background-color: #EFF7FF;
   text-decoration: none;
   padding: 2px 6px 0 6px;
@@ -81,15 +85,11 @@
   border-width: 0 0 1px 0;
 }
 
-.App-header a.active {
+.App-content .sortmenu a.active {
   color: orangered;
   border: 1px solid #5F99CF;
   border-bottom: 1px solid #FFF;
   background-color: #FFF;
-}
-
-.App-content {
-  margin: 5px;
 }
 
 .App-content .list {
