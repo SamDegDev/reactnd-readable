@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { fetchCommentsWithPost } from '../actions';
+import { fetchCommentsWithPost, changeSelectedCategory } from '../actions';
 import { urlize } from '../utils/helpers';
 import TiArrowUp from 'react-icons/lib/ti/arrow-up';
 import TiArrowDown from 'react-icons/lib/ti/arrow-down';
@@ -12,6 +12,7 @@ import TimeAgo from 'react-timeago';
 class PostItem extends Component {
   componentDidMount() {
     this.props.fetchCommentsWithPost(this.props.match.params.postId);
+    this.props.changeSelectedCategory(this.props.match.params.category);
   }
 
   render() {
@@ -33,13 +34,10 @@ class PostItem extends Component {
                 {post.body}
               </div>
             }
-            <div className='comments'><a href='#comments'>{comments.list.length}</a> comments</div>
-            {extended &&
-              <div className='comments'>
-                {post.body}
+            {comments.list.length > 0 &&
+              <div className='comments'><a href='#comments'>{comments.list.length}</a> comments<br />
               </div>
             }
-
           </div>
         </div>
       );
@@ -59,7 +57,8 @@ function mapStateToProps({ comments }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchCommentsWithPost: postId => dispatch(fetchCommentsWithPost(postId))
+    fetchCommentsWithPost: postId => dispatch(fetchCommentsWithPost(postId)),
+    changeSelectedCategory: data => dispatch(changeSelectedCategory(data)),
   }
 };
 
@@ -67,8 +66,9 @@ PostItem.propTypes = {
   post: PropTypes.object,
   extended: PropTypes.bool,
   comments: PropTypes.object,
-  fetchCommentsWithPost: PropTypes.func,
   match: PropTypes.object,
+  fetchCommentsWithPost: PropTypes.func,
+  changeSelectedCategory: PropTypes.func,
 };
 PostItem.defaultProps = { extended: false };
 
