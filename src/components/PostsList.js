@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { fetchAllPosts, fetchPostsWithCategory, changeSelectedCategory, changePostsSorting } from '../actions';
@@ -83,6 +84,16 @@ function mapDispatchToProps (dispatch) {
     changeSelectedCategory: data => dispatch(changeSelectedCategory(data)),
     changePostsSorting: data => dispatch(changePostsSorting(data)),
   }
+};
+
+PostsList.propTypes = {
+  location: PropTypes.object,
+  categories: PropTypes.object,
+  posts: PropTypes.object,
+  fetchAllPosts: PropTypes.func,
+  fetchPostsWithCategory: PropTypes.func,
+  changeSelectedCategory: PropTypes.func,
+  changePostsSorting: PropTypes.func,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostsList));

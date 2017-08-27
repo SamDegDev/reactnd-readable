@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -37,5 +38,10 @@ function mapDispatchToProps (dispatch) {
     fetchAllCategories: data => dispatch(fetchAllCategories()),
   }
 };
+
+Categories.propTypes = {
+  categories: PropTypes.object,
+  fetchAllCategories: PropTypes.func,
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Categories));
