@@ -124,6 +124,7 @@
   color:#B2B2B2;
   font-size: 13px;
   font-weight: bold;
+  text-align: center;
 }
 
 .post-item .votes a {
@@ -149,13 +150,54 @@
 }
 
 .post-item .post .details,
-.post-item .post .details a,
-.post-item .post .comments,
-.post-item .post .comments a {
+.post-item .post .details a {
   color:#B2B2B2;
   font-size: 12px;
 }
 
-.post-item .post .comments {
+.post-item .post .body {
+  margin: 5px 0 20px; 
+  padding: 10px 15px;
+  border: 1px solid  #B1C0FF;
+  border-radius: 7px;
+}
+
+.post-item .comments .comments-header {
+  font-size: 13px;
+}
+
+.post-item .comments ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.post-item .comments li {
+  margin: 10px 0;
+  border: 1px solid #D2D2D2;
+  border-radius: 7px;
+  padding: 5px 10px;
+  display: flex;  
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.post-item .comment .title {
+  color:#B2B2B2;
+  font-size: 12px;
+}
+
+.post-item .comment .author {
   font-weight: bold;
+  color: #369;
+}
+
+.post-item .comment .body {
+  margin: 5px 0;
+  border: 0px none #000;
 }

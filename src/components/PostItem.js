@@ -35,7 +35,23 @@ class PostItem extends Component {
               </div>
             }
             {comments.list.length > 0 &&
-              <div className='comments'><a href='#comments'>{comments.list.length}</a> comments<br />
+              <div className='comments'>
+                <div className='comments-header'> All {comments.list.length} comments sorted by score</div>
+                <ul>
+                  {comments.list.map(comment => (
+                    <li key={comment.id}>
+                      <div className='votes'>
+                        <a className='arrow up' href='#up'><TiArrowUp size={24} /></a>
+                        <div className='score'>{comment.voteScore}</div>
+                        <a className='arrow down' href='#down'><TiArrowDown size={24} /></a>
+                      </div>
+                      <div className="comment">
+                        <div className='title'><span className='author'>{comment.author}</span> {comment.voteScore} points <TimeAgo date={comment.timestamp} /></div>
+                        <div className='body'>{comment.body}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             }
           </div>
