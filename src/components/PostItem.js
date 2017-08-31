@@ -45,7 +45,7 @@ class PostItem extends Component {
                         <div className='score'>{comment.voteScore}</div>
                         <a className='arrow down' href='#down'><TiArrowDown size={24} /></a>
                       </div>
-                      <div className="comment">
+                      <div className='comment'>
                         <div className='title'><span className='author'>{comment.author}</span> {comment.voteScore} points <TimeAgo date={comment.timestamp} /></div>
                         <div className='body'>{comment.body}</div>
                       </div>
