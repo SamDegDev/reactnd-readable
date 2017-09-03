@@ -57,8 +57,36 @@
   justify-content: center;
 }
 
+.App-wrapper {
+  display: flex;
+}
+
+.App-sidebar {
+  margin: 5px;
+  flex: 1 auto;
+}
+
+.App-sidebar a {
+  text-decoration: none;
+  text-transform: lowercase;
+  display: block;
+  padding: 4px 0;
+  border: 1px solid #C0D8F0;
+  color: #369;
+  background: #E9F2FC;
+  background: linear-gradient(#fff, #E9F2FC);
+}
+
+.App-sidebar a:hover {
+  color: #fff;
+  border: 1px solid #8097AE;
+  background: #6497CD;
+  background: linear-gradient(#C8DCF0, #6497CD);
+}
+
 .App-content {
   margin: 5px;
+  flex: 1 auto;
 }
 
 .App-content .sortmenu {
@@ -156,7 +184,7 @@
 }
 
 .post-item .post .body {
-  margin: 5px 0 20px; 
+  margin: 5px 0 20px;
   padding: 10px 15px;
   border: 1px solid  #B1C0FF;
   border-radius: 7px;
@@ -180,7 +208,7 @@
   border: 1px solid #D2D2D2;
   border-radius: 7px;
   padding: 5px 10px;
-  display: flex;  
+  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchPostById } from '../actions';
 import PostItem from './PostItem';
 
@@ -12,11 +13,25 @@ class PostDetail extends Component {
 
   render() {
     const post = this.props.posts.selected;
+    if (post !== null) {
       return (
-        <div className='post-details'>
-          <PostItem post={post} extended />
+        <div className='App-wrapper'>
+          <div className='App-content'>
+            <div className='post-details'>
+              <PostItem post={post} extended />
+            </div>
+          </div>
+          <div className='App-sidebar'>
+            <Link to={`/r/${post.category}/submit`}>Add a Post</Link>
+          </div>
         </div>
-    );
+      );
+    }
+    else {
+      return (
+        <div />
+      );
+    }
   }
 }
 

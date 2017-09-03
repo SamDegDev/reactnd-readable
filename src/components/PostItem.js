@@ -11,8 +11,10 @@ import TimeAgo from 'react-timeago';
 
 class PostItem extends Component {
   componentDidMount() {
-    this.props.fetchCommentsWithPost(this.props.match.params.postId);
-    this.props.changeSelectedCategory(this.props.match.params.category);
+    if (this.props.extended) {
+      this.props.fetchCommentsWithPost(this.props.match.params.postId);
+      this.props.changeSelectedCategory(this.props.match.params.category);
+    }
   }
 
   render() {
@@ -34,7 +36,7 @@ class PostItem extends Component {
                 {post.body}
               </div>
             }
-            {comments.list.length > 0 &&
+            {extended && comments.list.length > 0 &&
               <div className='comments'>
                 <div className='comments-header'> All {comments.list.length} comments sorted by score</div>
                 <ul>

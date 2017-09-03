@@ -21,9 +21,9 @@ class PostsList extends Component {
 
   loadPosts(location) {
     const selectedCategory = getCategoryFromUrl(location.pathname);
-    if (selectedCategory !== this.props.categories.selected) {
+    //if (selectedCategory !== this.props.categories.selected) {
       selectedCategory === 'all' ? this.props.fetchAllPosts() : this.props.fetchPostsWithCategory(selectedCategory);
-    }
+    //}
     this.props.changeSelectedCategory(selectedCategory);
   }
 
@@ -33,20 +33,27 @@ class PostsList extends Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { posts, categories } = this.props;
     return (
-      <div className='posts-list'>
-        <ul className='sortmenu'>
-          <li><Link to={`/r/${this.props.categories.selected}/top`} className={posts.sorting === 'top' ? 'active' : ''}>top</Link></li>
-          <li><Link to={`/r/${this.props.categories.selected}/new`} className={posts.sorting === 'new' ? 'active' : ''}>new</Link></li>
-        </ul>
-        <ul className='list'>
-          {posts.list && posts.list.map(post =>
-            <li className='list-item' key={post.id}>
-              <PostItem post={post} />
-            </li>
-          )}
-        </ul>
+      <div className='App-wrapper'>
+        <div className='App-content'>
+          <div className='posts-list'>
+            <ul className='sortmenu'>
+              <li><Link to={`/r/${categories.selected}/top`} className={posts.sorting === 'top' ? 'active' : ''}>top</Link></li>
+              <li><Link to={`/r/${categories.selected}/new`} className={posts.sorting === 'new' ? 'active' : ''}>new</Link></li>
+            </ul>
+            <ul className='list'>
+              {posts.list && posts.list.map(post =>
+                <li className='list-item' key={post.id}>
+                  <PostItem post={post} />
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+        <div className='App-sidebar'>
+          <Link to={`${categories.selected === 'all' ? '' : '/r/'+categories.selected}/submit`}>Add a Post</Link>
+        </div>
       </div>
     );
   }
