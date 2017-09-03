@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Shortid from 'shortid';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -11,8 +12,11 @@ class PostCreate extends Component {
   }
 
   render() {
+    //console.log(Shortid.generate());
     return (
-      <div>Create post</div>
+      <div>
+        id, timestamp, title, body, owner, category
+      </div>
     );
   }
 }
