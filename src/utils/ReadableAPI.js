@@ -36,12 +36,25 @@ export const fetchPostById = postId =>
 
 // Fetches all the comments for a single post
 export const fetchCommentsWithPost = postId =>
-fetch(`${API_ROOT}/posts/${postId}/comments`, { headers })
-  .then(res => res.json())
-  .then(data => data);
+  fetch(`${API_ROOT}/posts/${postId}/comments`, { headers })
+    .then(res => res.json())
+    .then(data => data);
 
 // Fetches the details for a single comment
 export const fetchCommentById = commentId =>
-fetch(`${API_ROOT}/comments/${commentId}`, { headers })
-  .then(res => res.json())
-  .then(data => data);
+  fetch(`${API_ROOT}/comments/${commentId}`, { headers })
+    .then(res => res.json())
+    .then(data => data);
+
+// Add a new post
+export const createPost = data =>
+  fetch(`${API_ROOT}/posts`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ data })
+  })
+    .then(res => res.json())
+    .then(data => data);
