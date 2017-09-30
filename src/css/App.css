@@ -66,7 +66,8 @@
   flex: 1 auto;
 }
 
-.App-sidebar a {
+.App-sidebar a,
+.App-sidebar button {
   text-decoration: none;
   text-transform: lowercase;
   display: block;
@@ -75,9 +76,15 @@
   color: #369;
   background: #E9F2FC;
   background: linear-gradient(#fff, #E9F2FC);
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  width: 100%;
+  box-sizing:content-box;
+  font-size: 1em;
 }
 
-.App-sidebar a:hover {
+.App-sidebar a:hover,
+.App-sidebar button:hover  {
   color: #fff;
   border: 1px solid #8097AE;
   background: #6497CD;
@@ -228,4 +235,23 @@
 .post-item .comment .body {
   margin: 5px 0;
   border: 0px none #000;
+}
+
+input,
+select,
+textarea,
+button {
+  display: block;
+  margin: 10px 10px 20px;
+  font-size: 14px;
+  min-width: 250px;
+  position: relative;
+}
+
+.create-post-details {
+  margin: 10px;
+  padding: 10px 10px 0;
+  border: 1px solid #D2D2D2;
+  border-radius: 7px;
+  width: fit-content;
 }
