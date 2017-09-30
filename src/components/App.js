@@ -23,6 +23,7 @@ class App extends Component {
           <Route exact path='/r/:category' component={PostsList} />
           <Route exact path='/r/:category/:sorting' component={PostsList} />
           <Route path='/r/:category/comments/:postId/:postTitle' component={PostDetail} />
+          <Route path='/r/:category/edit/:postId/:postTitle' component={PostsCreate} />
         </Switch>
       </div>
     );
