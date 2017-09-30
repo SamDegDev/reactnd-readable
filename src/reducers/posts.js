@@ -4,6 +4,8 @@ import {
   CHANGE_POSTS_SORTING,
   RECEIVE_POST_BY_ID,
   CREATE_POST,
+  DELETE_POST,
+  CLEAR_SELECTED_POST,
 } from '../actions/index';
 
 const initialPostsState = {
@@ -45,6 +47,15 @@ export default function posts(state = initialPostsState, action) {
       return {
         ...state,
         selected: action.post,
+      }
+    case DELETE_POST:
+      return {
+        ...state,
+      }
+    case CLEAR_SELECTED_POST:
+      return {
+        ...state,
+        selected: null,
       }
     default:
       return state;
