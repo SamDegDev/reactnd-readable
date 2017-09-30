@@ -9,6 +9,8 @@ export const RECEIVE_POSTS_WITH_CATEGORY = 'RECEIVE_POSTS_WITH_CATEGORY';
 export const CHANGE_POSTS_SORTING = 'CHANGE_POSTS_SORTING';
 export const RECEIVE_POST_BY_ID = 'RECEIVE_POST_BY_ID';
 export const CREATE_POST = 'CREATE_POST';
+export const DELETE_POST = 'DELETE_POST';
+export const CLEAR_SELECTED_POST = 'CLEAR_SELECTED_POST';
 // Comments
 export const RECEIVE_ALL_COMMENTS_WITH_POST = 'RECEIVE_ALL_COMMENTS_WITH_POST';
 export const CHANGE_COMMENTS_SORTING = 'CHANGE_COMMENTS_SORTING';
@@ -68,3 +70,12 @@ export const createPost = postData => dispatch => {
 		.createPost(postData)
 		.then(post => dispatch(receiveCreatePost(post)));
 }
+
+export const receiveDeletePostById = data => ({ type: DELETE_POST, data });
+export const deletePostById = postId => dispatch => {
+  ReadableAPI
+	.deletePostById(postId)
+	.then(data => dispatch(receiveDeletePostById(data)));
+}
+
+export const clearSelectedPost = data => ({ type: CLEAR_SELECTED_POST, data });
