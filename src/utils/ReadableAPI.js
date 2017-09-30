@@ -1,4 +1,4 @@
-const API_ROOT = 'http://localhost:5001';
+const API_ROOT = 'http://localhost:3001';
 
 // Generate a unique token
 let token = localStorage.token
@@ -47,14 +47,25 @@ export const fetchCommentById = commentId =>
     .then(data => data);
 
 // Add a new post
-export const createPost = data =>
-  fetch(`${API_ROOT}/posts`, {
+export const createPost = data => {
+  return fetch(`${API_ROOT}/posts`, {
     method: 'POST',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ data })
+    body: JSON.stringify({ ...data })
   })
     .then(res => res.json())
     .then(data => data);
+}
+// Delete a post by its ID
+export const deletePostById = postId => {
+  return fetch(`${API_ROOT}/posts/${postId}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers,
+    },
+  })
+    .then(res => res.text())
+}
