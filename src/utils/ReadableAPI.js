@@ -59,6 +59,7 @@ export const createPost = data => {
     .then(res => res.json())
     .then(data => data);
 }
+
 // Delete a post by its ID
 export const deletePostById = postId => {
   return fetch(`${API_ROOT}/posts/${postId}`, {
@@ -68,4 +69,18 @@ export const deletePostById = postId => {
     },
   })
     .then(res => res.text())
+}
+
+// Edit a post by its ID
+export const editPostById = (postId, data) => {
+  return fetch(`${API_ROOT}/posts/${postId}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ...data })
+  })
+    .then(res => res.json())
+    .then(data => data);
 }

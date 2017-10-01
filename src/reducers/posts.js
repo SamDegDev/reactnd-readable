@@ -6,6 +6,7 @@ import {
   CREATE_POST,
   DELETE_POST,
   CLEAR_SELECTED_POST,
+  EDIT_POST,
 } from '../actions/index';
 
 const initialPostsState = {
@@ -56,6 +57,10 @@ export default function posts(state = initialPostsState, action) {
       return {
         ...state,
         selected: null,
+      }
+    case EDIT_POST:
+      return {
+        ...state,
       }
     default:
       return state;
