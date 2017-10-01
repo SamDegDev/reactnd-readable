@@ -9,7 +9,7 @@ import { createPost, fetchAllCategories, changeSelectedCategory, fetchPostById, 
 import serializeForm from 'form-serialize';
 import { capitalize, urlize } from '../utils/helpers';
 
-class PostCreate extends Component {
+class PostForm extends Component {
 
   constructor(props) {
     super(props);
@@ -68,7 +68,7 @@ class PostCreate extends Component {
     return (
       <div className='App-wrapper'>
         <div className='App-content'>
-          <form ref={form => this.createPostForm = form} className='create-post-form'>
+          <form ref={form => this.createPostForm = form} className='post-form'>
             <div className='create-post-details'>
               <Field name='title' component='input' type='text' placeholder='Title' required />
               <Field name='body' component='textarea' placeholder='Content' required />
@@ -109,7 +109,7 @@ function mapDispatchToProps (dispatch) {
   }
 };
 
-PostCreate.propTypes = {
+PostForm.propTypes = {
   createPost: PropTypes.func,
   editPost: PropTypes.func,
   fetchAllCategories: PropTypes.func,
@@ -121,17 +121,17 @@ PostCreate.propTypes = {
   match: PropTypes.object,
   history: PropTypes.object,
 };
-PostCreate.defaultProps = { extended: false };
+PostForm.defaultProps = { extended: false };
 
 // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
-PostCreate = reduxForm({
-  form: 'create-post-form',
-})(PostCreate);
+PostForm = reduxForm({
+  form: 'post-form',
+})(PostForm);
 
-PostCreate = connect(
+PostForm = connect(
   state => ({
     initialValues: state.posts.selected, // pull initial values from posts reducer
   }),
-)(PostCreate);
+)(PostForm);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostCreate));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostForm));

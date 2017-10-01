@@ -4,7 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import Categories from './Categories';
 import PostsList from './PostsList';
 import PostDetail from './PostDetail';
-import PostsCreate from './PostCreate';
+import PostForm from './PostForm';
 import FaBook from 'react-icons/lib/fa/book';
 import '../css/App.css';
 
@@ -18,12 +18,12 @@ class App extends Component {
         </div>
         <Switch>
           <Route exact path='/' component={PostsList} />
-          <Route exact path='/submit' component={PostsCreate} />
-          <Route exact path='/r/:category/submit' component={PostsCreate} />
+          <Route exact path='/submit' component={PostForm} />
+          <Route exact path='/r/:category/submit' component={PostForm} />
           <Route exact path='/r/:category' component={PostsList} />
           <Route exact path='/r/:category/:sorting' component={PostsList} />
           <Route path='/r/:category/comments/:postId/:postTitle' component={PostDetail} />
-          <Route path='/r/:category/edit/:postId/:postTitle' component={PostsCreate} />
+          <Route path='/r/:category/edit/:postId/:postTitle' component={PostForm} />
         </Switch>
       </div>
     );
