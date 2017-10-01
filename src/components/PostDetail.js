@@ -3,11 +3,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Modal from 'react-modal';
 import { fetchPostById, deletePostById, clearSelectedPost } from '../actions';
 import { urlize } from '../utils/helpers';
 import PostItem from './PostItem';
+import CommentForm from './CommentForm';
 
 class PostDetail extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      commentModalOpen: false,
+    }
+  }
+
   componentDidMount() {
     this.props.fetchPostById(this.props.match.params.postId);
   }
@@ -25,6 +36,18 @@ class PostDetail extends Component {
     this.props.clearSelectedPost();
   }
 
+  openCommentModal = () => {
+    this.setState(() => ({
+      commentModalOpen: true,
+    }));
+  }
+
+  closeCommentModal = () => {
+    this.setState(() => ({
+      foodModalOpen: false,
+    }));
+  }
+
   render() {
     const post = this.props.posts.selected;
     if (post !== null) {
@@ -36,10 +59,23 @@ class PostDetail extends Component {
             </div>
           </div>
           <div className='App-sidebar'>
-            <Link to={`/r/${post.category}/submit`}>Add a Post</Link>
+            <button onClick={() => this.openCommentModal()} >Add a Comment</button>
             <Link to={`/r/${post.category}/edit/${post.id}/${urlize(post.title)}`}>Edit this Post</Link>
             <button onClick={(e) => this.deleteCurrentPost(e)}>Delete this Post</button>
           </div>
+
+          <Modal
+            className='modal'
+            overlayClassName='overlay'
+            isOpen={this.state.commentModalOpen}
+            onRequestClose={this.closeCommentModal}
+            contentLabel='Modal'
+          >
+            <div>
+              {this.state.commentModalOpen && <CommentForm />}
+            </div>
+          </Modal>
+
         </div>
       );
     }
