@@ -30,14 +30,20 @@ export const receiveAllPosts = posts => ({ type: RECEIVE_ALL_POSTS, posts });
 export const fetchAllPosts = () => dispatch => {
 	ReadableAPI
 		.fetchAllPosts()
-		.then(posts => dispatch(receiveAllPosts(posts)));
+		.then(posts => {
+			posts.map(post => dispatch(fetchCommentsWithPost(post.id)));
+			dispatch(receiveAllPosts(posts));
+		});
 };
 
 export const receivePostsWithCategory = posts => ({ type: RECEIVE_POSTS_WITH_CATEGORY, posts });
 export const fetchPostsWithCategory = categoryId => dispatch => {
   ReadableAPI
 	.fetchPostsWithCategory(categoryId)
-	.then(posts => dispatch(receivePostsWithCategory(posts)));
+	.then(posts => {
+		posts.map(post => dispatch(fetchCommentsWithPost(post.id)));
+		dispatch(receivePostsWithCategory(posts))
+	});
 }
 
 export const changePostsSorting = sorting => ({ type: CHANGE_POSTS_SORTING, sorting })
@@ -46,7 +52,10 @@ export const receivePostById = post => ({ type: RECEIVE_POST_BY_ID, post });
 export const fetchPostById = postId => dispatch => {
 	ReadableAPI
 		.fetchPostById(postId)
-		.then(post => dispatch(receivePostById(post)));
+		.then(post => {
+			dispatch(fetchCommentsWithPost(post.id));
+			dispatch(receivePostById(post));
+		});
 }
 
 export const receiveCommentsWithPost = comments => ({ type: RECEIVE_ALL_COMMENTS_WITH_POST, comments });

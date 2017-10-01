@@ -10,15 +10,15 @@ import TiArrowDown from 'react-icons/lib/ti/arrow-down';
 import TimeAgo from 'react-timeago';
 
 class PostItem extends Component {
+
   componentDidMount() {
     if (this.props.extended) {
-      this.props.fetchCommentsWithPost(this.props.match.params.postId);
       this.props.changeSelectedCategory(this.props.match.params.category);
     }
   }
 
   render() {
-    const { post, extended, comments } = this.props;
+    const { post, extended } = this.props;
 
     if (post !== null) {
       return (
@@ -30,17 +30,20 @@ class PostItem extends Component {
           </div>
           <div className='post'>
             <div className='title'><Link to={`/r/${post.category}/comments/${post.id}/${urlize(post.title)}`}>{post.title}</Link></div>
-            <div className='details'>submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/r/${post.category}`}>/r/{post.category}</Link></div>
+            <div className='details'>
+              submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/r/${post.category}`}>/r/{post.category}</Link>
+              <br /> {post.comments ? `${post.comments.length} comments` : ''}
+            </div>
             {extended &&
               <div className='body'>
                 {post.body}
               </div>
             }
-            {extended && comments.list.length > 0 &&
+            {extended && post.comments && post.comments.length > 0 &&
               <div className='comments'>
-                <div className='comments-header'> All {comments.list.length} comments sorted by score</div>
+                <div className='comments-header'> All {post.comments.length} comments sorted by score</div>
                 <ul>
-                  {comments.list.map(comment => (
+                  {post.comments.map(comment => (
                     <li key={comment.id}>
                       <div className='votes'>
                         <a className='arrow up' href='#up'><TiArrowUp size={24} /></a>
@@ -67,9 +70,9 @@ class PostItem extends Component {
   }
 }
 
-function mapStateToProps({ comments }) {
+function mapStateToProps({ posts }) {
   return {
-    comments
+    posts
   }
 }
 
@@ -83,9 +86,7 @@ function mapDispatchToProps (dispatch) {
 PostItem.propTypes = {
   post: PropTypes.object,
   extended: PropTypes.bool,
-  comments: PropTypes.object,
   match: PropTypes.object,
-  fetchCommentsWithPost: PropTypes.func,
   changeSelectedCategory: PropTypes.func,
 };
 PostItem.defaultProps = { extended: false };
