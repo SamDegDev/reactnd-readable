@@ -7,14 +7,21 @@ import {
   DELETE_POST,
   CLEAR_SELECTED_POST,
   EDIT_POST,
+  VOTE_POST,
   RECEIVE_ALL_COMMENTS_WITH_POST,
   CHANGE_COMMENTS_SORTING,
   RECEIVE_COMMENT_BY_ID,
+  CLEAR_SELECTED_COMMENT,
+  CREATE_COMMENT,
+  EDIT_COMMENT,
+  DELETE_COMMENT,
+  VOTE_COMMENT,
 } from '../actions/index';
 
 const initialPostsState = {
   sorting: 'top',
   commentsSorting: 'top',
+  selectedComment: null,
   selected: null,
   list: [],
 }
@@ -65,27 +72,31 @@ export default function posts(state = initialPostsState, action) {
     case EDIT_POST:
       return {
         ...state,
+        selected: action.post,
+      }
+    case VOTE_POST:
+      return {
+        ...state,
+        list: state.list.map(post =>
+          post.id === action.post.id
+            ? action.post
+            : post
+        ),
+        selected: state.selected === null ? null : action.post
       }
     case RECEIVE_ALL_COMMENTS_WITH_POST:
       const { comments } = action;
+
       let postsList = state.list;
       postsList.map(post => {
-        if (!post.comments) {
-          post.comments = [];
-        }
         post.comments = [
-            ...post.comments,
             ...comments.filter(comment => comment.parentId === post.id)
         ];
         return post;
       });
       let postSelected = state.selected;
       if (postSelected) {
-        if (!postSelected.comments) {
-          postSelected.comments = [];
-        }
         postSelected.comments = [
-            ...postSelected.comments,
             ...comments.filter(comment => comment.parentId === postSelected.id)
         ];
       }
@@ -106,15 +117,53 @@ export default function posts(state = initialPostsState, action) {
           : null;
       return {
         ...state,
-        sorting
+        commentsSorting
       }
     case RECEIVE_COMMENT_BY_ID:
       const { comment } = action;
       return {
         ...state,
-        selected: comment,
+        selectedComment: comment,
       }
-      default:
+    case CLEAR_SELECTED_COMMENT:
+      return {
+        ...state,
+        selectedComment: null,
+      }
+    case EDIT_COMMENT:
+      let newCommentsArray = [];
+      state.selected.comments.map(comment =>
+        newCommentsArray.push(comment.id === action.comment.id
+          ? action.comment
+          : comment));
+      return {
+        ...state,
+        selected: {
+          ...state.selected,
+          comments: newCommentsArray,
+        }
+      }
+    case CREATE_COMMENT:
+      return {
+        ...state
+      }
+    case DELETE_COMMENT:
+      return {
+        ...state,
+      }
+    case VOTE_COMMENT:
+      return {
+        ...state,
+        selected: {
+          ...state.selected,
+          comments: state.selected.comments.map(comment =>
+            comment.id === action.comment.id
+              ? action.comment
+              : comment
+          )
+        }
+      }
+    default:
       return state;
   }
 }

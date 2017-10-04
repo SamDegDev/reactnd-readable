@@ -21,9 +21,7 @@ class PostsList extends Component {
 
   loadPosts(location) {
     const selectedCategory = getCategoryFromUrl(location.pathname);
-    //if (selectedCategory !== this.props.categories.selected) {
-      selectedCategory === 'all' ? this.props.fetchAllPosts() : this.props.fetchPostsWithCategory(selectedCategory);
-    //}
+    selectedCategory === 'all' ? this.props.fetchAllPosts() : this.props.fetchPostsWithCategory(selectedCategory);
     this.props.changeSelectedCategory(selectedCategory);
   }
 

@@ -160,11 +160,11 @@
   font-size: 13px;
   font-weight: bold;
   text-align: center;
+  user-select: none;
 }
 
-.post-item .votes a {
-  color:#C2C2C2;
-  text-decoration: none;
+.post-item .votes svg {
+  cursor: pointer;
 }
 
 .post-item .post {
@@ -199,6 +199,22 @@
 
 .post-item .comments .comments-header {
   font-size: 13px;
+  display: flex;
+  flex-direction: row;
+}
+
+.post-item .comments .comments-sorting-img {
+  margin: 0 0 0 3px;
+}
+.post-item .comments .comments-sorting-list {
+  margin: 0 0 0 5px;
+  padding: 4px 6px;
+  background-color: #CBE0F7;
+}
+
+.post-item .comments .comments-sorting-list a,
+.post-item .comments .comments-sorting-list a:visited {
+  color: #000;
 }
 
 .post-item .comments ul {
@@ -223,6 +239,11 @@
 }
 
 .post-item .comment .title {
+  margin: 0 0 0 10px;
+}
+
+.post-item .comment .title,
+.post-item .comment .title a {
   color:#B2B2B2;
   font-size: 12px;
 }

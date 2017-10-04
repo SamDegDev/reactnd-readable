@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
-import { createPost, fetchAllCategories, changeSelectedCategory, fetchPostById, editPost, clearSelectedPost } from '../actions';
+import { createPost, fetchAllCategories, changeSelectedCategory, fetchPostById, editPostById, clearSelectedPost } from '../actions';
 import serializeForm from 'form-serialize';
 import { capitalize, urlize } from '../utils/helpers';
 
@@ -13,7 +13,6 @@ class PostForm extends Component {
 
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       isEditing: false,
     }
@@ -37,7 +36,7 @@ class PostForm extends Component {
     this.props.clearSelectedPost();
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     if (this.createPostForm.checkValidity && !this.createPostForm.checkValidity()) {
       this.createPostForm.reportValidity && this.createPostForm.reportValidity();
     }
@@ -48,7 +47,7 @@ class PostForm extends Component {
           ...this.props.posts.selected,
           ...serializeForm(this.createPostForm, { hash: true }),
         }
-        this.props.editPost(data.id, data);
+        this.props.editPostById(data.id, data);
       }
       else {
         data = {
@@ -105,13 +104,13 @@ function mapDispatchToProps (dispatch) {
     changeSelectedCategory: data => dispatch(changeSelectedCategory(data)),
     fetchPostById: postId => dispatch(fetchPostById(postId)),
     clearSelectedPost: data => dispatch(clearSelectedPost(data)),
-    editPost: (postId, data) => dispatch(editPost(postId, data)),
+    editPostById: (postId, data) => dispatch(editPostById(postId, data)),
   }
 };
 
 PostForm.propTypes = {
   createPost: PropTypes.func,
-  editPost: PropTypes.func,
+  editPostById: PropTypes.func,
   fetchAllCategories: PropTypes.func,
   fetchPostById: PropTypes.func,
   categories: PropTypes.object,

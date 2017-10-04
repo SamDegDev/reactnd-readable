@@ -16,6 +16,7 @@ class PostDetail extends Component {
 
     this.state = {
       commentModalOpen: false,
+      commentId: null,
     }
   }
 
@@ -36,15 +37,17 @@ class PostDetail extends Component {
     this.props.clearSelectedPost();
   }
 
-  openCommentModal = () => {
+  openCommentModal = (commentId = null) => {
     this.setState(() => ({
       commentModalOpen: true,
+      commentId: commentId,
     }));
   }
 
   closeCommentModal = () => {
     this.setState(() => ({
-      foodModalOpen: false,
+      commentModalOpen: false,
+      commentId: null,
     }));
   }
 
@@ -55,7 +58,7 @@ class PostDetail extends Component {
         <div className='App-wrapper'>
           <div className='App-content'>
             <div className='post-details'>
-              <PostItem post={post} extended />
+              <PostItem post={post} openCommentModal={this.openCommentModal} extended />
             </div>
           </div>
           <div className='App-sidebar'>
@@ -72,7 +75,7 @@ class PostDetail extends Component {
             contentLabel='Modal'
           >
             <div>
-              {this.state.commentModalOpen && <CommentForm />}
+              {this.state.commentModalOpen && <CommentForm closeCommentModal={this.closeCommentModal} commentId={this.state.commentId}/>}
             </div>
           </Modal>
 
@@ -88,6 +91,16 @@ class PostDetail extends Component {
 }
 
 function mapStateToProps({ posts }) {
+  if (posts.selected && posts.selected.comments && posts.selected.comments.length > 0 && posts.commentsSorting) {
+    switch (posts.commentsSorting) {
+      case 'new':
+        posts.selected.comments.sort((a,b) => a.timestamp < b.timestamp);
+      break;
+      default:
+        posts.selected.comments.sort((a,b) => a.voteScore < b.voteScore);
+      break;
+    }
+  }
   return {
     posts,
   }
