@@ -6,11 +6,11 @@
 [X] Post Detail View should show the details of a post, including: Title, Body, Author, timestamp (in user readable format), and vote score
 [X] Post Detail View should list all of the comments for that post, ordered by voteScore (highest first)
 [X] Post Detail View should have controls to edit or delete the post
-[ ] (A) Post Detail View should have a control to add a new comment
-[ ] (B) Post Detail View implement comment form however you want (inline, modal, etc.)
-[ ] (C) Post Detail View comments should also have controls for editing or deleting
+[X] (A) Post Detail View should have a control to add a new comment
+[X] (B) Post Detail View implement comment form however you want (inline, modal, etc.)
+[X] (C) Post Detail View comments should also have controls for editing or deleting
 [X] Create/Edit View should have a form to create new post or edit existing posts
 [X] Create/Edit View when editing, existing data should be populated in the form
-[ ] (D) Posts and comments, in all views where they are displayed, should display their current score
+[X] (D) Posts and comments, in all views where they are displayed, should display their current score
 [ ] (E) Posts and comments should have controls to increment or decrement the voteScore for the object
 [X] Posts should display the number of comments associated with the post
