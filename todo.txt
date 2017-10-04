@@ -12,5 +12,5 @@
 [X] Create/Edit View should have a form to create new post or edit existing posts
 [X] Create/Edit View when editing, existing data should be populated in the form
 [X] (D) Posts and comments, in all views where they are displayed, should display their current score
-[ ] (E) Posts and comments should have controls to increment or decrement the voteScore for the object
+[X] (E) Posts and comments should have controls to increment or decrement the voteScore for the object
 [X] Posts should display the number of comments associated with the post
