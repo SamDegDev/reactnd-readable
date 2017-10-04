@@ -75,7 +75,7 @@ class PostDetail extends Component {
             contentLabel='Modal'
           >
             <div>
-              {this.state.commentModalOpen && <CommentForm closeCommentModal={this.closeCommentModal} commentId={this.state.commentId}/>}
+              {this.state.commentModalOpen && <CommentForm closeCommentModal={this.closeCommentModal} commentId={this.state.commentId} />}
             </div>
           </Modal>
 

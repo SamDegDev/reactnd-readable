@@ -89,7 +89,7 @@ class PostItem extends Component {
             {extended && post.comments && post.comments.length > 0 &&
               <div className='comments'>
                 <div className='comments-header'> All {post.comments.length} comments sorted by: {this.props.posts.commentsSorting}
-                  <FaCaretDown className='comments-sorting-img' size={12} onClick={() => this.toggleCommentsSortingList()}/>
+                  <FaCaretDown className='comments-sorting-img' size={12} onClick={() => this.toggleCommentsSortingList()} />
                   <div className='comments-sorting-list' style={{display: 'none'}} ref={div => this.commentsSortingList = div}>
                     <Link to='#comments-sorting-top' onClick={() => this.props.changeCommentsSorting('top') && this.toggleCommentsSortingList()}>top</Link><br />
                     <Link to='#comments-sorting-new' onClick={() => this.props.changeCommentsSorting('new') && this.toggleCommentsSortingList()}>new</Link>
@@ -150,6 +150,13 @@ PostItem.propTypes = {
   match: PropTypes.object,
   changeSelectedCategory: PropTypes.func,
   openCommentModal: PropTypes.func,
+  deleteCommentById: PropTypes.func,
+  fetchCommentsWithPost: PropTypes.func,
+  votePostById: PropTypes.func,
+  voteCommentById: PropTypes.func,
+  posts: PropTypes.object,
+  changeCommentsSorting: PropTypes.func,
+  changeSelectedCategory: PropTypes.func,
 };
 PostItem.defaultProps = { extended: false };
 

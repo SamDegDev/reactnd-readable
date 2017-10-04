@@ -116,8 +116,8 @@ export const fetchCommentsWithPost = postId => dispatch => {
 export const receiveCommentById = comment => ({ type: RECEIVE_COMMENT_BY_ID, comment });
 export const fetchCommentById = commentId => dispatch => {
   ReadableAPI
-	  .fetchCommentById(commentId)
-	  .then(comment => dispatch(receiveCommentById(comment)));
+	.fetchCommentById(commentId)
+	.then(comment => dispatch(receiveCommentById(comment)));
 }
 
 export const changeCommentsSorting = sorting => ({ type: CHANGE_COMMENTS_SORTING, sorting })

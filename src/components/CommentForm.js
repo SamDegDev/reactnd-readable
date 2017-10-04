@@ -87,9 +87,12 @@ function mapDispatchToProps (dispatch) {
 
 CommentForm.propTypes = {
   createComment: PropTypes.func,
-  categories: PropTypes.object,
   closeCommentModal: PropTypes.func,
   commentId: PropTypes.string,
+  fetchCommentById: PropTypes.func,
+  clearSelectedComment: PropTypes.func,
+  editCommentById: PropTypes.func,
+  posts: PropTypes.object,
 };
 CommentForm.defaultProps = { extended: false };
 
