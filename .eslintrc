@@ -1,3 +1,8 @@
 {
-  "extends": "standard-react"
+  "extends": "standard-react",
+  "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "classes": true,
+    "jsx": true
+  }
 }
