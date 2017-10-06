@@ -110,7 +110,7 @@ class PostItem extends Component {
                       </div>
                       <div className='comment'>
                         <div className='title'>
-                          <span className='author'>{comment.author}</span> {comment.voteScore} points <TimeAgo date={comment.timestamp} /><br />
+                          by <span className='author'>{comment.author}</span> {comment.voteScore} points <TimeAgo date={comment.timestamp} /><br />
                           <Link to='#edit-comment' onClick={() => this.editCommentById(comment.id)}>edit</Link>&nbsp;|&nbsp;
                           <Link to='#delete-comment' onClick={() => this.deleteCommentById(comment.id, comment.parentId)}>delete</Link>
                         </div>
