@@ -7,7 +7,7 @@ The MyReads project is a bookshelf app that allows to select and categorise book
 * node ^8.2.1
 * yarn ^0.27.5 or npm ^5.3.0
 
-# Getting the Server
+## Getting the Server
 
 * clone the Project
 ```sh
