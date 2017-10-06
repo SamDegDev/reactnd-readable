@@ -19,12 +19,15 @@ class PostsList extends Component {
     }
   }
 
+  // loads the lists of posts based on the current category
   loadPosts(location) {
     const selectedCategory = getCategoryFromUrl(location.pathname);
+    // if the category is 'all' it fetches all posts
     selectedCategory === 'all' ? this.props.fetchAllPosts() : this.props.fetchPostsWithCategory(selectedCategory);
     this.props.changeSelectedCategory(selectedCategory);
   }
 
+  // handles the sorting of the post
   sortPosts(location) {
     const selectedSorting = getSortingFromUrl(location.pathname);
     this.props.changePostsSorting(selectedSorting);
@@ -57,11 +60,13 @@ class PostsList extends Component {
   }
 }
 
+// extracts the category name from an URL
 function getCategoryFromUrl(url) {
   const match = url.match(/\/r\/([^\W]+)/i);
   return !match ? 'all' : match[1];
 }
 
+// extracts the sorting setting from an URL
 function getSortingFromUrl(url) {
   const match = url.match(/\/r\/[^\W]+\/([^\W]+)/i);
   return !match ? 'top' : match[1];
@@ -70,9 +75,11 @@ function getSortingFromUrl(url) {
 function mapStateToProps({ posts, categories }) {
   switch (posts.sorting) {
     case 'new':
+      // sorts the posts by date
       posts.list.sort((a,b) => a.timestamp < b.timestamp);
     break;
     default:
+      // sorts the posts by score
       posts.list.sort((a,b) => a.voteScore < b.voteScore);
     break;
   }

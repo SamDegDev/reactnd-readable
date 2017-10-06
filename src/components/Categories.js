@@ -8,6 +8,7 @@ import { fetchAllCategories } from '../actions';
 class Categories extends Component {
 
   componentDidMount() {
+    // gets all the available categories
     this.props.fetchAllCategories();
   }
 
@@ -19,7 +20,14 @@ class Categories extends Component {
         <ul className='categories'>
           <li><NavLink exact to='/' className={categories.selected === 'all' ? 'active' : ''}>all categories</NavLink></li>
           {categories.list && categories.list.map(category =>
-            <li key={category.name}><NavLink to={`/r/${category.path}`} className={categories.selected === category.name ? 'active' : ''}>{category.name}</NavLink></li>
+            <li key={category.name}>
+              <NavLink
+                to={`/r/${category.path}`}
+                className={categories.selected === category.name ? 'active' : ''}
+              >
+                {category.name}
+              </NavLink>
+            </li>
           )}
         </ul>
       </div>

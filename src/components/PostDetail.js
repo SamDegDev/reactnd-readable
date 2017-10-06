@@ -21,9 +21,11 @@ class PostDetail extends Component {
   }
 
   componentDidMount() {
+    // gets the current post details
     this.props.fetchPostById(this.props.match.params.postId);
   }
 
+  // deletes the current post and redirects to the category list
   deleteCurrentPost(e) {
     e.preventDefault();
     if (window.confirm('Do you really want to delete this Post?')) {
@@ -37,6 +39,7 @@ class PostDetail extends Component {
     this.props.clearSelectedPost();
   }
 
+  // opens the modal window to add/edit comments
   openCommentModal = (commentId = null) => {
     this.setState(() => ({
       commentModalOpen: true,
@@ -44,6 +47,7 @@ class PostDetail extends Component {
     }));
   }
 
+  // closes teh comments modal window
   closeCommentModal = () => {
     this.setState(() => ({
       commentModalOpen: false,
@@ -94,9 +98,11 @@ function mapStateToProps({ posts }) {
   if (posts.selected && posts.selected.comments && posts.selected.comments.length > 0 && posts.commentsSorting) {
     switch (posts.commentsSorting) {
       case 'new':
+        // sorts the post by date
         posts.selected.comments.sort((a,b) => a.timestamp < b.timestamp);
       break;
       default:
+        // sorts the posts by score
         posts.selected.comments.sort((a,b) => a.voteScore < b.voteScore);
       break;
     }

@@ -13,6 +13,7 @@ class CommentForm extends Component {
     super(props);
 
     this.state = {
+      // variable to know if we're in adding or editing a comment
       isEditing: false,
     }
   }
@@ -31,6 +32,7 @@ class CommentForm extends Component {
     this.props.clearSelectedComment();
   }
 
+  // handles the submit of the form
   handleSubmit = (e) => {
     e.preventDefault();
     let data = {};
@@ -96,11 +98,12 @@ CommentForm.propTypes = {
 };
 CommentForm.defaultProps = { extended: false };
 
-// Decorate with reduxForm(). It will read the initialValues prop provided by connect()
+// Decorate with reduxForm(), it reads the initialValues prop provided by connect()
 CommentForm = reduxForm({
   form: 'comment-form',
 })(CommentForm);
 
+// Provides the initial values for the form when in edit mode
 CommentForm = connect(
   state => ({
     initialValues: state.posts.selectedComment, // pull initial values from posts reducer

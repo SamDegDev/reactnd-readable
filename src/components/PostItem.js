@@ -34,10 +34,12 @@ class PostItem extends Component {
     }
   }
 
+  // opens the comments modal defined in the parent component passing the id of the comment
   editCommentById = commentId => {
     this.props.openCommentModal(commentId);
   }
 
+  // deletes a comment by its id
   deleteCommentById = (commentId, postId) => {
     if (window.confirm('Do you really want to delete this Comment?')) {
       this.props.deleteCommentById(commentId);
@@ -45,18 +47,21 @@ class PostItem extends Component {
     }
   }
 
+  // handles the votes for posts
   votePost = (vote, postId) => {
     if (['upVote', 'downVote'].indexOf(vote) >= 0) {
       this.props.votePostById(postId, {option: vote});
     }
   }
 
+  // handles the votes for comments
   voteComment = (vote, commentId) => {
     if (['upVote', 'downVote'].indexOf(vote) >= 0) {
       this.props.voteCommentById(commentId, {option: vote});
     }
   }
 
+  // shows or hide the comments sorting list
   toggleCommentsSortingList = () => {
     this.commentsSortingList.style.display =
       this.commentsSortingList.style.display === 'none'

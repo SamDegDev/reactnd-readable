@@ -14,12 +14,15 @@ class PostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // variable to know if we're in adding or editing a comment
       isEditing: false,
     }
   }
 
   componentDidMount() {
+    // gets all the categories
     this.props.fetchAllCategories();
+    // selects the current category based on the current post
     this.props.changeSelectedCategory(this.props.match.params.category);
 
     // if the postId match param is set, we are in Edit mode of an existing post
@@ -28,15 +31,19 @@ class PostForm extends Component {
       this.setState({
         isEditing: true,
       })
+      // gets the post data
       this.props.fetchPostById(params.postId);
     }
   }
 
   componentWillUnmount() {
+    // clears the selected post from the posts reducer
     this.props.clearSelectedPost();
   }
 
+  // handles the submit of the form
   handleSubmit = () => {
+    // checks whether the form is valid
     if (this.createPostForm.checkValidity && !this.createPostForm.checkValidity()) {
       this.createPostForm.reportValidity && this.createPostForm.reportValidity();
     }
@@ -57,6 +64,7 @@ class PostForm extends Component {
         };
         this.props.createPost(data);
       }
+      // redirects to the current post page in wiew mode
       this.props.history.push(`/r/${data.category}/comments/${data.id}/${urlize(data.title)}`)
     }
   }
@@ -122,11 +130,12 @@ PostForm.propTypes = {
 };
 PostForm.defaultProps = { extended: false };
 
-// Decorate with reduxForm(). It will read the initialValues prop provided by connect()
+// Decorate with reduxForm(), it reads the initialValues prop provided by connect()
 PostForm = reduxForm({
   form: 'post-form',
 })(PostForm);
 
+// Provides the initial values for the form when in edit mode
 PostForm = connect(
   state => ({
     initialValues: state.posts.selected, // pull initial values from posts reducer
