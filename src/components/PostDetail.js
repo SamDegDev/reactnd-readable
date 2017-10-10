@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import { fetchPostById, deletePostById, clearSelectedPost } from '../actions';
-import { urlize } from '../utils/helpers';
 import PostItem from './PostItem';
 import CommentForm from './CommentForm';
 

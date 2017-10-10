@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { createPost, fetchAllCategories, changeSelectedCategory, fetchPostById, editPostById, clearSelectedPost } from '../actions';
 import serializeForm from 'form-serialize';
-import { capitalize, urlize } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 
 class PostForm extends Component {
 
