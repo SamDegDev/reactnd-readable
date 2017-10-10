@@ -22,8 +22,8 @@ class App extends Component {
           <Route exact path='/r/:category/submit' component={PostForm} />
           <Route exact path='/r/:category' component={PostsList} />
           <Route exact path='/r/:category/:sorting' component={PostsList} />
-          <Route path='/:category/:postId' component={PostDetail} />
-          <Route path='/r/:category/edit/:postId/:postTitle' component={PostForm} />
+          <Route exact path='/:category/:postId' component={PostDetail} />
+          <Route exact path='/:category/edit/:postId' component={PostForm} />
         </Switch>
       </div>
     );

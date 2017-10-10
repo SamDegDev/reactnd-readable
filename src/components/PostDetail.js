@@ -67,7 +67,7 @@ class PostDetail extends Component {
           </div>
           <div className='App-sidebar'>
             <button onClick={() => this.openCommentModal()} >Add a Comment</button>
-            <Link to={`/r/${post.category}/edit/${post.id}/${urlize(post.title)}`}>Edit this Post</Link>
+            <Link to={`/${post.category}/edit/${post.id}`}>Edit this Post</Link>
             <button onClick={(e) => this.deleteCurrentPost(e)}>Delete this Post</button>
           </div>
 
