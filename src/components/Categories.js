@@ -22,7 +22,7 @@ class Categories extends Component {
           {categories.list && categories.list.map(category =>
             <li key={category.name}>
               <NavLink
-                to={`/r/${category.path}`}
+                to={`/${category.path}`}
                 className={categories.selected === category.name ? 'active' : ''}
               >
                 {category.name}

@@ -14,7 +14,8 @@ export default function categories(state = initialCategoriesState, action) {
         list: [...categories],
         };
     case CHANGE_SELECTED_CATEGORY:
-        const { category } = action;
+        let { category } = action
+        category = category !== undefined ? category : 'all' ;
         return {
           ...state,
           selected: category,

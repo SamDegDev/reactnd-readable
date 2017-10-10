@@ -83,7 +83,7 @@ class PostItem extends Component {
           <div className='post'>
             <div className='title'><Link to={`/${post.category}/${post.id}`}>{post.title}</Link></div>
             <div className='details'>
-              submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/r/${post.category}`}>/r/{post.category}</Link>
+              submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/${post.category}`}>/{post.category}</Link>
               <br /> {post.comments ? `${post.comments.length} comments` : '0 comments'}
             </div>
             {extended &&

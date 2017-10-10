@@ -91,7 +91,7 @@ class PostForm extends Component {
         </div>
         <div className='App-sidebar'>
           <button onClick={this.handleSubmit}>Save Post</button>
-          <Link to={`${categories.selected === 'all' ? '/' : '/r/'+categories.selected}`}>Cancel</Link>
+          <Link to={`${categories.selected === 'all' ? '/' : '/'+categories.selected}`}>Cancel</Link>
         </div>
       </div>
     );

@@ -40,8 +40,8 @@ class PostsList extends Component {
         <div className='App-content'>
           <div className='posts-list'>
             <ul className='sortmenu'>
-              <li><Link to={`/r/${categories.selected}/top`} className={posts.sorting === 'top' ? 'active' : ''}>top</Link></li>
-              <li><Link to={`/r/${categories.selected}/new`} className={posts.sorting === 'new' ? 'active' : ''}>new</Link></li>
+              <li><Link to={`/${categories.selected}/top`} className={posts.sorting === 'top' ? 'active' : ''}>top</Link></li>
+              <li><Link to={`/${categories.selected}/new`} className={posts.sorting === 'new' ? 'active' : ''}>new</Link></li>
             </ul>
             <ul className='list'>
               {posts.list && posts.list.map(post =>
@@ -53,7 +53,7 @@ class PostsList extends Component {
           </div>
         </div>
         <div className='App-sidebar'>
-          <Link to={`${categories.selected === 'all' ? '' : '/r/'+categories.selected}/submit`}>Add a Post</Link>
+          <Link to={`${categories.selected === 'all' ? '' : '/'+categories.selected}/submit`}>Add a Post</Link>
         </div>
       </div>
     );
@@ -62,13 +62,13 @@ class PostsList extends Component {
 
 // extracts the category name from an URL
 function getCategoryFromUrl(url) {
-  const match = url.match(/\/r\/([^\W]+)/i);
+  const match = url.match(/\/([^\W]+)/i);
   return !match ? 'all' : match[1];
 }
 
 // extracts the sorting setting from an URL
 function getSortingFromUrl(url) {
-  const match = url.match(/\/r\/[^\W]+\/([^\W]+)/i);
+  const match = url.match(/\/[^\W]+\/([^\W]+)/i);
   return !match ? 'top' : match[1];
 }
 

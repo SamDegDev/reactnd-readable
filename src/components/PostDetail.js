@@ -31,7 +31,7 @@ class PostDetail extends Component {
     if (window.confirm('Do you really want to delete this Post?')) {
       const post = this.props.posts.selected;
       this.props.deletePostById(post.id);
-      this.props.history.push(`/r/${post.category}`)
+      this.props.history.push(`/${post.category}`)
     }
   }
 
