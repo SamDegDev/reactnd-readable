@@ -85,30 +85,24 @@ export default function posts(state = initialPostsState, action) {
         selected: state.selected === null ? null : action.post
       }
     case RECEIVE_ALL_COMMENTS_WITH_POST:
-      const { comments } = action;
-
+      const { comments, postId } = action;
       let postsList = state.list;
       postsList.map(post => {
-        post.comments = [
-            ...comments.filter(comment => comment.parentId === post.id)
-        ];
+        if (post.id === postId) {
+          post.comments = comments;
+        }
         return post;
       });
       let postSelected = state.selected;
-      if (postSelected) {
-        postSelected.comments = [
-            ...comments.filter(comment => comment.parentId === postSelected.id)
-        ];
+      if (postSelected !== null && postSelected['id']) {
+        postSelected.comments = comments;
       }
       return {
         ...state,
         list: [
           ...postsList
         ],
-        selected: {
-          ...state.selected,
-          ...postSelected
-        }
+        selected: postSelected
       }
     case CHANGE_COMMENTS_SORTING:
       const commentsSorting  =

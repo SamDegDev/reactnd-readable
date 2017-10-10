@@ -45,6 +45,7 @@ export const fetchAllPosts = () => dispatch => {
 	ReadableAPI
 		.fetchAllPosts()
 		.then(posts => {
+			posts.map(post => dispatch(fetchCommentsWithPost(post.id)));
 			dispatch(receiveAllPosts(posts));
 		});
 };
@@ -105,11 +106,11 @@ export const votePostById = (postId, postData) => dispatch => {
  * COMMENTS
  */
 
-export const receiveCommentsWithPost = comments => ({ type: RECEIVE_ALL_COMMENTS_WITH_POST, comments });
+export const receiveCommentsWithPost = (postId, comments) => ({ type: RECEIVE_ALL_COMMENTS_WITH_POST, postId, comments });
 export const fetchCommentsWithPost = postId => dispatch => {
   ReadableAPI
 	.fetchCommentsWithPost(postId)
-	.then(comments => dispatch(receiveCommentsWithPost(comments)));
+	.then(comments => dispatch(receiveCommentsWithPost(postId, comments)));
 }
 
 export const receiveCommentById = comment => ({ type: RECEIVE_COMMENT_BY_ID, comment });
