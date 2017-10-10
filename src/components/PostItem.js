@@ -93,7 +93,7 @@ class PostItem extends Component {
           <div className='post'>
             <div className='title'><Link to={`/${post.category}/${post.id}`}>{post.title}</Link></div>
             <div className='details'>
-              <Link to={`/${post.category}/edit/${post.id}`}>Edit</Link> | <Link to='#delete-post' onClick={() => this.deletePost(post)}>Delete</Link>
+              <Link to={`/${post.category}/edit/${post.id}`}>edit</Link> | <Link to='#delete-post' onClick={() => this.deletePost(post)}>delete</Link>
               <br />submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/${post.category}`}>/{post.category}</Link>
               <br />{post.comments ? `${post.comments.length} comments` : '0 comments'}
 
