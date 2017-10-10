@@ -9,9 +9,9 @@ import {
   deleteCommentById,
   votePostById,
   voteCommentById,
-  changeCommentsSorting
+  changeCommentsSorting,
+  deletePostById
 } from '../actions';
-import { urlize } from '../utils/helpers';
 import TiArrowUp from 'react-icons/lib/ti/arrow-up';
 import TiArrowDown from 'react-icons/lib/ti/arrow-down';
 import FaCaretDown from 'react-icons/lib/fa/caret-down';
@@ -26,6 +26,7 @@ class PostItem extends Component {
     this.votePost = this.votePost.bind(this);
     this.voteComment = this.voteComment.bind(this);
     this.toggleCommentsSortingList = this.toggleCommentsSortingList.bind(this);
+    this.deletePost = this.deletePost.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +70,15 @@ class PostItem extends Component {
       : 'none';
   }
 
+  // deletes a post and redirects to the category list
+  deletePost(post) {
+    if (window.confirm('Do you really want to delete this Post?')) {
+      this.props.deletePostById(post.id);
+      const { categories } = this.props;
+      this.props.history.push(`${categories.selected === 'all' ? '/' : '/'+categories.selected}`)
+    }
+  }
+
   render() {
     const { post, extended } = this.props;
 
@@ -83,8 +93,10 @@ class PostItem extends Component {
           <div className='post'>
             <div className='title'><Link to={`/${post.category}/${post.id}`}>{post.title}</Link></div>
             <div className='details'>
-              submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/${post.category}`}>/{post.category}</Link>
-              <br /> {post.comments ? `${post.comments.length} comments` : '0 comments'}
+              <Link to={`/${post.category}/edit/${post.id}`}>Edit</Link> | <Link to='#delete-post' onClick={() => this.deletePost(post)}>Delete</Link>
+              <br />submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/${post.category}`}>/{post.category}</Link>
+              <br />{post.comments ? `${post.comments.length} comments` : '0 comments'}
+
             </div>
             {extended &&
               <div className='body'>
@@ -132,9 +144,10 @@ class PostItem extends Component {
   }
 }
 
-function mapStateToProps({ posts }) {
+function mapStateToProps({ categories, posts }) {
   return {
     posts,
+    categories,
   }
 }
 
@@ -146,6 +159,7 @@ function mapDispatchToProps (dispatch) {
     votePostById: (postId, vote) => dispatch(votePostById(postId, vote)),
     voteCommentById: (commentId, vote) => dispatch(voteCommentById(commentId, vote)),
     changeCommentsSorting: sorting => dispatch(changeCommentsSorting(sorting)),
+    deletePostById: postId => dispatch(deletePostById(postId)),
   }
 };
 
@@ -160,8 +174,10 @@ PostItem.propTypes = {
   votePostById: PropTypes.func,
   voteCommentById: PropTypes.func,
   posts: PropTypes.object,
+  categories: PropTypes.object,
   changeCommentsSorting: PropTypes.func,
-  changeSelectedCategory: PropTypes.func,
+  deletePostById: PropTypes.func,
+  history: PropTypes.object,
 };
 PostItem.defaultProps = { extended: false };
 
