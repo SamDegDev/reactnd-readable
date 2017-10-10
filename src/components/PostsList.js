@@ -40,8 +40,8 @@ class PostsList extends Component {
         <div className='App-content'>
           <div className='posts-list'>
             <ul className='sortmenu'>
-              <li><Link to={`/${categories.selected}/top`} className={posts.sorting === 'top' ? 'active' : ''}>top</Link></li>
-              <li><Link to={`/${categories.selected}/new`} className={posts.sorting === 'new' ? 'active' : ''}>new</Link></li>
+              <li><Link to={`/${categories.selected}/sort/top`} className={posts.sorting === 'top' ? 'active' : ''}>top</Link></li>
+              <li><Link to={`/${categories.selected}/sort/new`} className={posts.sorting === 'new' ? 'active' : ''}>new</Link></li>
             </ul>
             <ul className='list'>
               {posts.list && posts.list.map(post =>
@@ -68,7 +68,7 @@ function getCategoryFromUrl(url) {
 
 // extracts the sorting setting from an URL
 function getSortingFromUrl(url) {
-  const match = url.match(/\/[^\W]+\/([^\W]+)/i);
+  const match = url.match(/\/[^\W]+\/sort\/([^\W]+)/i);
   return !match ? 'top' : match[1];
 }
 
