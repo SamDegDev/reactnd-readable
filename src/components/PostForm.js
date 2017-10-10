@@ -65,7 +65,7 @@ class PostForm extends Component {
         this.props.createPost(data);
       }
       // redirects to the current post page in wiew mode
-      this.props.history.push(`/r/${data.category}/comments/${data.id}/${urlize(data.title)}`)
+      this.props.history.push(`/${data.category}/${data.id}`)
     }
   }
 

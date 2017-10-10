@@ -81,7 +81,7 @@ class PostItem extends Component {
             <TiArrowDown size={24} onClick={() => this.votePost('downVote', post.id)} />
           </div>
           <div className='post'>
-            <div className='title'><Link to={`/r/${post.category}/comments/${post.id}/${urlize(post.title)}`}>{post.title}</Link></div>
+            <div className='title'><Link to={`/${post.category}/${post.id}`}>{post.title}</Link></div>
             <div className='details'>
               submitted <TimeAgo date={post.timestamp} /> by {post.author} to <Link to={`/r/${post.category}`}>/r/{post.category}</Link>
               <br /> {post.comments ? `${post.comments.length} comments` : '0 comments'}
