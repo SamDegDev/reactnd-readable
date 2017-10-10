@@ -45,7 +45,6 @@ export const fetchAllPosts = () => dispatch => {
 	ReadableAPI
 		.fetchAllPosts()
 		.then(posts => {
-			posts.map(post => dispatch(fetchCommentsWithPost(post.id)));
 			dispatch(receiveAllPosts(posts));
 		});
 };
