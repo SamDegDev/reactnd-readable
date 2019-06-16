@@ -58,6 +58,11 @@ export default function posts(state = initialPostsState, action) {
     case CREATE_POST:
       return {
         ...state,
+        list: state.list.map(post =>
+          post.id === action.post.id
+            ? action.post
+            : post
+        ),
         selected: action.post,
       }
     case DELETE_POST:
